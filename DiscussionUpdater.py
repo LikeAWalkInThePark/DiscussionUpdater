@@ -40,7 +40,7 @@ def CheckNewerPostedA(r, Enum):
 		isTheory2 = re.findall(r"theories", Title)
 		isTheory3 = re.findall(r"Theory", Title)
 		isTheory4 = re.findall(r"theory", Title)
-		if isTheory1 or isTheory2 or isTheory3 or isTheory4
+		if isTheory1 or isTheory2 or isTheory3 or isTheory4:
 			pass
 		if int(Number[0]) == Enum:
 			Link = x.short_link
@@ -62,7 +62,7 @@ def CheckNewerPostedM(r, Cnum):
 		isTheory2 = re.findall(r"theories", Title)
 		isTheory3 = re.findall(r"Theory", Title)
 		isTheory4 = re.findall(r"theory", Title)
-		if isTheory1 or isTheory2 or isTheory3 or isTheory4
+		if isTheory1 or isTheory2 or isTheory3 or isTheory4:
 			pass
 		if int(Number[0]) == Cnum:
 			Link = x.short_link
@@ -111,12 +111,15 @@ def run():
 	getAnimewiki(r)
 	LatestE = LastLinkedDiscussion('anime_discussion')
 	LatestC = LastLinkedDiscussion('manga_discussion')
-	while A = 0 :
+	while A == 0 :
 		LatestE = LastLinkedDiscussion('anime_discussion')
 		A = CheckNewerPostedA(r, LatestE+1)
-	while M = 0 :
+	while M == 0 :
 		LatestC = LastLinkedDiscussion('manga_discussion')
 		M = CheckNewerPostedM(r, LatestC+1)
 
 if __name__ == "__main__":
 	run()
+
+
+
