@@ -33,40 +33,47 @@ def LastLinkedDiscussion(MorA):
 def CheckNewerPostedA(r, Enum):
 	phrase = "one piece " + str(Enum) + " flair:CurrentEpisode"
 	submissions = r.search(phrase, subreddit="onepiece")
-	try:
-		Submissionobject = submissions.next()
-		Title = Submissionobject.title
+	for x in submissions:
+		Title = x.title
 		Number = re.findall(r" [\s0-9]+", Title)
+		isTheory = re.findall(r"Theories", Title)
+		isTheorys = re.findall(r"theories", Title)
+		if isTheory or isTheorys:
+			pass
 		if int(Number[0]) == Enum:
-			Link = Submissionobject.short_link
+			Link = x.short_link
 			stringtoadd = "[Episode " + str(Enum) + "](" +  Link[14:] +")"
 			AddToWiki(stringtoadd, Enum, "anime_discussion")
 			WriteToWiki(r, "anime_discussion")
-	except StopIteration:
-		return
+			return 0
+	return 1
+
 
 """Checks if a newer  manga discussion has been posted, if true than it calls a function which rewrites the wiki"""
 def CheckNewerPostedM(r, Cnum):
 	phrase = "one piece " + str(Cnum) + " flair:CurrentChapter"
 	submissions = r.search(phrase, subreddit="onepiece")
-	try:
-		Submissionobject = submissions.next()
-		Title = Submissionobject.title
+	for x in submissions:
+		Title = x.title
 		Number = re.findall(r" [\s0-9]+", Title)
+		isTheory = re.findall(r"Theories", Title)
+		isTheorys = re.findall(r"theories", Title)
+		if isTheory or isTheorys:
+			pass
 		if int(Number[0]) == Cnum:
-			Link = Submissionobject.short_link
-			stringtoadd = "[Chapter " + str(Cnum) + "](" +  Link[14:] +")"
-			AddToWiki(stringtoadd, Cnum, "manga_discussion")
-			WriteToWiki(r, "manga_discussion")	
-	except StopIteration:
-		return
+			Link = x.short_link
+			stringtoadd = "[Chapter " + str(Enum) + "](" +  Link[14:] +")"
+			AddToWiki(stringtoadd, Enum, "manga_discussion")
+			WriteToWiki(r, "manga_discussion")
+			return 0
+	return 1
 
 """This function addeds the new link to wiki file locally"""
 def AddToWiki(stringtoadd, Number, wikiname):
 	f = open(wikiname, "r")
 	contents = f.readlines()
 	f.close()
-	if ((Number%100) == 0): #this if statment assumes that there is only three lines before it starts linking.
+	if ((Number%100) == 0):
 		contents.insert(3, "####"+str(Number)+"s")
 		contents.insert(4, "|||||||||||")
 		contents.insert(5, "|-|-|-|-|-|-|-|-|-|-|")
@@ -90,13 +97,22 @@ def WriteToWiki(r, wikiname):
 	f.close()
 	final =''.join(contents)
 	x = r.edit_wiki_page("onepiece",wikiname,final)
-	
 
-if __name__ == "__main__":
+"""Runs program tell there is no more links to be updated"""
+def run():
+	A = 0
+	M = 0
 	r = setup("insert_fancy_user_agent_here", "fancy_user_name_here", "fancy_password_to_fancy_user_name_here")
 	getMangawiki(r)
 	getAnimewiki(r)
 	LatestE = LastLinkedDiscussion('anime_discussion')
 	LatestC = LastLinkedDiscussion('manga_discussion')
-	CheckNewerPostedA(r, LatestE+1)
-	CheckNewerPostedM(r, LatestC+1)
+	while A = 0 :
+		LatestE = LastLinkedDiscussion('anime_discussion')
+		A = CheckNewerPostedA(r, LatestE+1)
+	while M = 0 :
+		LatestC = LastLinkedDiscussion('manga_discussion')
+		M = CheckNewerPostedM(r, LatestC+1)
+
+if __name__ == "__main__":
+	run()
