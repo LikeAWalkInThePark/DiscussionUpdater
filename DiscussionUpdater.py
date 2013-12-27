@@ -36,9 +36,11 @@ def CheckNewerPostedA(r, Enum):
 	for x in submissions:
 		Title = x.title
 		Number = re.findall(r" [\s0-9]+", Title)
-		isTheory = re.findall(r"Theories", Title)
-		isTheorys = re.findall(r"theories", Title)
-		if isTheory or isTheorys:
+		isTheory1 = re.findall(r"Theories", Title) #sloppy work
+		isTheory2 = re.findall(r"theories", Title)
+		isTheory3 = re.findall(r"Theory", Title)
+		isTheory4 = re.findall(r"theory", Title)
+		if isTheory1 or isTheory2 or isTheory3 or isTheory4
 			pass
 		if int(Number[0]) == Enum:
 			Link = x.short_link
@@ -56,9 +58,11 @@ def CheckNewerPostedM(r, Cnum):
 	for x in submissions:
 		Title = x.title
 		Number = re.findall(r" [\s0-9]+", Title)
-		isTheory = re.findall(r"Theories", Title)
-		isTheorys = re.findall(r"theories", Title)
-		if isTheory or isTheorys:
+		isTheory1 = re.findall(r"Theories", Title) #sloppy work
+		isTheory2 = re.findall(r"theories", Title)
+		isTheory3 = re.findall(r"Theory", Title)
+		isTheory4 = re.findall(r"theory", Title)
+		if isTheory1 or isTheory2 or isTheory3 or isTheory4
 			pass
 		if int(Number[0]) == Cnum:
 			Link = x.short_link
