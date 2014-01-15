@@ -66,8 +66,8 @@ def CheckNewerPostedM(r, Cnum):
 			pass
 		if int(Number[0]) == Cnum:
 			Link = x.short_link
-			stringtoadd = "[Chapter " + str(Enum) + "](" +  Link[14:] +")"
-			AddToWiki(stringtoadd, Enum, "manga_discussion")
+			stringtoadd = "[Chapter " + str(Cnum) + "](" +  Link[14:] +")"
+			AddToWiki(stringtoadd, Cnum, "manga_discussion")
 			WriteToWiki(r, "manga_discussion")
 			return 0
 	return 1
@@ -100,13 +100,13 @@ def WriteToWiki(r, wikiname):
 	contents = f.readlines()
 	f.close()
 	final =''.join(contents)
-	x = r.edit_wiki_page("onepiece",wikiname,final)
+	x = r.edit_wiki_page("onepiece",wikiname,final, reason='First wiki done by a bot.')
 
 """Runs program tell there is no more links to be updated"""
 def run():
 	A = 0
 	M = 0
-	r = setup("insert_fancy_user_agent_here", "fancy_user_name_here", "fancy_password_to_fancy_user_name_here")
+	r = setup("masteroftime666", "masteroftime666", "12369**9")
 	getMangawiki(r)
 	getAnimewiki(r)
 	LatestE = LastLinkedDiscussion('anime_discussion')
@@ -120,6 +120,5 @@ def run():
 
 if __name__ == "__main__":
 	run()
-
 
 
