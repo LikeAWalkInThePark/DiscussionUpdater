@@ -106,7 +106,7 @@ def WriteToWiki(r, wikiname):
 def run():
 	A = 0
 	M = 0
-	r = setup("masteroftime666", "masteroftime666", "12369**9")
+	r = setup("masteroftime666", "masteroftime666", "password")
 	getMangawiki(r)
 	getAnimewiki(r)
 	LatestE = LastLinkedDiscussion('anime_discussion')
